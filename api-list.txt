@@ -1,1 +1,14 @@
+#List of Product : request type : GET without parameter or parameter page and size
 http://localhost:8080/taleb/api/products
+
+#add new product : request type : POST with parameters : id, names, description and category
+http://localhost:8080/taleb/api/products/create
+
+#for update : request type : PUT with parameter id 
+http://localhost:8080/taleb/api/products/{id}
+
+#for delete : request type : DELETE with parameter id
+http://localhost:8080/taleb/api/products/{id}
+
+#call google api without parameter
+http://localhost:8080/taleb/api/call-google

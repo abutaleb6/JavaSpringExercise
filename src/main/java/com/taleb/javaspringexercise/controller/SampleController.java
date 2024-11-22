@@ -4,6 +4,7 @@ import com.taleb.javaspringexercise.entity.Product;
 import com.taleb.javaspringexercise.service.ExternalApiService;
 import com.taleb.javaspringexercise.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.data.domain.Page;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,13 @@ public class SampleController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         return ResponseEntity.ok(productService.getAllProducts(page, size));
+    }
+
+    @GetMapping("/products/search")
+    public Page<Product> searchProducts(@RequestParam(defaultValue = "") String name,
+                                        @RequestParam(defaultValue = "0") int page,
+                                        @RequestParam(defaultValue = "10") int size) {
+        return productService.searchProducts(name, page, size);
     }
 
     @PostMapping("/products/create")

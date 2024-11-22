@@ -3,6 +3,7 @@ package com.taleb.javaspringexercise.service;
 import com.taleb.javaspringexercise.entity.Product;
 import com.taleb.javaspringexercise.repository.ProductRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,11 @@ public class ProductService {
     public List<Product> getAllProducts(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         return productRepository.findAll(pageable).getContent();
+    }
+
+    public Page<Product> searchProducts(String name, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return productRepository.findByNameContainingIgnoreCase(name, pageable);
     }
 
     public Product createProduct(Product product) {

@@ -1,6 +1,8 @@
 package com.taleb.javaspringexercise.repository;
 
 import com.taleb.javaspringexercise.entity.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,4 +16,5 @@ public interface ProductRepository extends JpaRepository <Product, Long> {
     @Query("SELECT p FROM Product p JOIN p.category c WHERE c.name = :categoryName")
     List<Product> findProductsByCategoryName(@Param("categoryName") String categoryName);
 
+    Page<Product> findByNameContainingIgnoreCase(String name, Pageable pageable);
 }

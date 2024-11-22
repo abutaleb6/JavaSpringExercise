@@ -1,3 +1,10 @@
+#API Docs 
+http://localhost:8080/taleb/swagger-ui/index.html
+#Postman
+http://localhost:8080/taleb/api-docs
+
+
+
 #List of Product : request type : GET without parameter or parameter page and size
 http://localhost:8080/taleb/api/products
 

@@ -31,6 +31,7 @@ public class SampleController {
     }
 
     @GetMapping("/products/search")
+    @Operation(summary = "searchProduct", description = "Returns List of Product with Search by name")
     public Page<Product> searchProducts(@RequestParam(defaultValue = "") String name,
                                         @RequestParam(defaultValue = "0") int page,
                                         @RequestParam(defaultValue = "10") int size) {
@@ -38,16 +39,19 @@ public class SampleController {
     }
 
     @PostMapping("/products/create")
+    @Operation(summary = "createProduct", description = "Returns with New Product")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.createProduct(product));
     }
 
     @PutMapping("/products/{id}")
+    @Operation(summary = "updateProduct", description = "Returns with Update Product")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
         return ResponseEntity.ok(productService.updateProduct(id, product));
     }
 
     @DeleteMapping("/products/{id}")
+    @Operation(summary = "deleteProduct", description = "Returns with Delete Product")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
         return ResponseEntity.noContent().build();
